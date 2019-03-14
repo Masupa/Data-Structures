@@ -1,6 +1,6 @@
 """
     ReadMe:
-        - Implementation improves the "Basic Imple 1" by handling resolution conflict through a linked list
+        - Implementation improves the "Basic Imple 1" by handling resolution collision through a linked list
 """
 
 
@@ -109,10 +109,43 @@ class LinkedList:
         return "<class 'LinkedList'>"
 
 
-new_list = LinkedList()
+# HashTable class
+class HashTable:
 
-new_list.tail_insert(1)
-new_list.tail_insert(2)
-new_list.tail_insert(3)
+    # Constructor initialized with a size of a Hash Table
+    def __init__(self, table_size):
+        self.size = table_size
+        self.lst = LinkedList()
+        self.table = [None] * self.size
 
-print(new_list.search(4))
+    # Basic Hash Function that looks considers input as int or str
+    def __hash_function(self, item):
+        # Edges cases of the import - Either int, str or something else
+
+        # int case
+        if type(item) is int:
+            return item % self.size
+
+        # Str case
+        elif type(item) is str:
+            hash_sum = 0
+            for i in range(len(item)):
+                hash_sum = hash_sum + ord(item[i])
+            return hash_sum % self.size
+
+        # Other cases - Will be worked on later
+        else:
+            print("Either cases have not been considered yet")
+
+    def insertion(self, item):
+        # Calling the Hash Function to get the hash_value
+        hash_value = self.__hash_function(item)
+
+    def __str__(self):
+        return "<class 'Hash Table'>"
+
+
+new_hash_table = HashTable(5)
+
+new_hash_table.insertion(1)
+new_hash_table.insertion(6)
