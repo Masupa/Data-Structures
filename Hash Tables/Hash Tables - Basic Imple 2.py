@@ -32,22 +32,19 @@ class LinkedList:
     # Constructor instantiated with no head
     def __init__(self):
         self.head = None
+        self.tail = None
         self.size = 0
 
     # Insertion at the tail - Application to Hash Tables
     def tail_insert(self, element):
-        insertion_node = Node(element)
+        insert_node = Node(element)
 
         pointer = self.head
         if pointer is None:
-            self.head = insertion_node
-            self.size += 1
-            return None
-
-        while pointer.NextVal is not None:
-            pointer = pointer.NextVal
-
-        pointer.NextVal = insertion_node
+            self.head = insert_node
+        else:
+            self.tail.NextVal = insert_node
+        self.tail = insert_node
         self.size += 1
 
     # Deletion of a node in the LinkedList given data value
@@ -145,7 +142,8 @@ class HashTable:
         return "<class 'Hash Table'>"
 
 
-new_hash_table = HashTable(5)
+new_lst = LinkedList()
 
-new_hash_table.insertion(1)
-new_hash_table.insertion(6)
+new_lst.tail_insert(1)
+new_lst.tail_insert(2)
+new_lst.tail_insert(3)
