@@ -57,6 +57,60 @@ class HashTable:
                 break_count += 1
             self.table[index_shifter] = item
 
+    def deletion(self, item):
+        # hash_value stores location of item
+        hash_value = self._hash_function(item)
+
+        # Reset location to "None" when item is at location
+        if self.table[hash_value] is item:
+            self.table[hash_value] = None
+        else:
+            index_shifter = hash_value + 1
+            break_det = 0
+
+            if index_shifter >= (self._size - 1):
+                index_shifter = 0
+
+            while self.table[index_shifter] is not item:
+                if index_shifter >= (self._size - 1):
+                    index_shifter = -1
+                else:
+                    if break_det >= (self._size - 1):
+                        print("The value does not exist in the Hash Table")
+                        return None
+                index_shifter += 1
+                break_det += 1
+
+            self.table[index_shifter] = None
+
+    def search(self, item):
+        # Hash_value to determine the address of an item
+        hash_value = self._hash_function(item)
+
+        # Return address when found in initial hash_value
+        if self.table[hash_value] is item:
+            return str(item) + " is at the address " + str(hash_value)
+        else:
+            index_shifter = hash_value + 1
+            break_det = 0
+
+            # Reset index_shifter to zero(0) in the case searching after last slot
+            if index_shifter == self._size:
+                index_shifter = 0
+
+            while self.table[index_shifter] is not item:
+                # Reset index_shifter to zero(0) when 1 less than size of hash table
+                if index_shifter == (self._size - 1):
+                    index_shifter = 0
+                else:
+                    if break_det == self._size:
+                        print(str(item) + " is not in the Hash Table")
+                        return None
+                break_det += 1
+                index_shifter += 1
+
+            return str(item) + " is at the address " + str(hash_value)
+
     def __str__(self):
         return "<class 'HashTable'>"
 
@@ -73,6 +127,19 @@ new_hashTable.insertion("Love")
 new_hashTable.insertion("Lydia")
 new_hashTable.insertion("Joseph")
 new_hashTable.insertion("Peter")
-new_hashTable.insertion("John")
 
 print(new_hashTable.get_table())
+
+new_hashTable.deletion("David")
+new_hashTable.deletion("Love")
+new_hashTable.deletion("Peter")
+new_hashTable.deletion("Chikumbi")
+
+# Case where an item does not exist in the Hash Table
+new_hashTable.deletion("PC")
+
+print(new_hashTable.get_table())
+
+print(new_hashTable.search("Masupa"))
+print(new_hashTable.search("Love"))
+print(new_hashTable.search("Lydia"))
