@@ -114,6 +114,16 @@ class SinglyLinkedList:
 
             print("Value does not exist in the Singly Linked List")
 
+    def display(self):
+        display_list = list()
+
+        pointer = self.Head
+        while pointer is not None:
+            display_list.append(pointer.Data)
+            pointer = pointer.Next
+
+        return display_list
+
 
 test_lst = SinglyLinkedList()
 test_lst.append(1)
@@ -127,3 +137,5 @@ test_lst.insert(5, 4)
 test_lst.append(5)
 
 test_lst.delete(3)
+
+print(test_lst.display())

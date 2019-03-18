@@ -138,6 +138,8 @@ class HashTable:
         # Calling the Hash Function to get the hash_value
         hash_value = self.__hash_function(item)
 
+        self.table[hash_value] = item
+
     def __str__(self):
         return "<class 'Hash Table'>"
 
