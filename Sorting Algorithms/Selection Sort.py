@@ -4,6 +4,14 @@
 
 
 def selection_sort(arr):
+    """
+    time-complexity: O(n**2)
+    space-complexity: O(1)
+    auxiliary-complexity: O(1)
+
+    :param arr: an array to be sorted
+    :return: an array sorted in ascending order
+    """
 
     # Pointer pointing at the end of the sorted list
     pointer1 = 0
