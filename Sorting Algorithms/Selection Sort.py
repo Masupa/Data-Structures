@@ -30,6 +30,6 @@ def selection_sort(arr):
     return arr
 
 
-sort_arr = [5, 4, 3, 2, 1]
+sort_arr = [10, 500, 28, 10, 2, 4, 0, 24]
 
 print(selection_sort(sort_arr))
